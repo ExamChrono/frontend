@@ -1,0 +1,21 @@
+<app-navbar-admin></app-navbar-admin>
+<div class="flex justify-center" style="max-height: 90vh;">
+  <div class=" container p-6 overflow-scroll px-0">
+    <div>
+      <form [formGroup]="formAddEtudiantsToPassExamen">
+        <input type="hidden" formControlName="passExamenId" id="passExamenIdAdd" name="passExamenId">
+        <div class="flex flex-col gap-4 p-6">
+          <div class="flex flex-col gap-2">
+            <label for="etudiants" class="text-sm font-sans font-normal text-blue-gray-900">Etudiants</label>
+            <select formControlName="etudiants" multiple id="etudiants">
+              <option *ngFor="let etudiant of etudiantsToPass.etudiants" value="{{etudiant.id}}">{{ etudiant.nom }} {{ etudiant.prenom }}</option>
+            </select>
+          </div>
+          <div class="flex flex-col gap-2">
+            <button (click)="AddSaveEtudiantsToPassExamen()" type="submit" class="p-4 bg-blue-500 text-white rounded-md">Save</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

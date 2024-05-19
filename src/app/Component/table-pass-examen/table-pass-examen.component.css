@@ -1,0 +1,41 @@
+#editePassExamen,
+#seeEtudiantsInPassExamen,
+#addEtudiantsToPassExamen{
+  position: absolute;
+  z-index: 1;
+  background-color: #e4c238;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  width: 100vw;
+}
+#seeEtudiantsInPassExamen{
+  color: black;
+  flex-direction: column;
+  min-height: -webkit-fill-available;
+  align-items: center;
+  background: white;
+  top: 75px;
+}
+#addEtudiantsToPassExamen input ,
+#editePassExamen select ,
+#addEtudiantsToPassExamen select ,
+#editePassExamen input{
+  color: #e4c238;
+}
+#editePassExamen span,
+#addEtudiantsToPassExamen span{
+  color: #ffffff;
+  font-size: 20px;
+}
+.close{
+  color: #e4c238;
+  background-color: #e5e7eb;
+  border-radius: 100%;
+  padding: 5px 10px;
+  width: max-content;
+}

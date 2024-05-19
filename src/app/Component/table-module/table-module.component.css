@@ -1,0 +1,29 @@
+#editeModule,
+#addModule,
+#passExamenInModule{
+  position: absolute;
+  z-index: 1;
+  background-color: #e4c238;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  width: 100vw;
+}
+#editeModule input ,
+#passExamenInModule input ,
+#editeModule select ,
+#addModule select ,
+#addModule input{
+  color: #e4c238;
+}
+#editeModule span,
+#passExamenInModule span,
+#addModule span{
+  color: #e4c238;
+  background-color: #e5e7eb;
+  border-radius: 100%;
+}

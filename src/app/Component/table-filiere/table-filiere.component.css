@@ -1,0 +1,44 @@
+#editeFiliere,
+#addFiliere,
+#seeEtudiantsInFiliere,
+#addEtudiantToFiliere{
+  position: absolute;
+  z-index: 1;
+  background-color: #e4c238;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  width: 100vw;
+}
+#seeEtudiantsInFiliere{
+  color: black;
+  flex-direction: column;
+  min-height: -webkit-fill-available;
+  align-items: center;
+  background: white;
+  top: 75px;
+}
+#editeFiliere input ,
+#editeFiliere select ,
+#addFiliere select ,
+#addFiliere input,
+#addEtudiantToFiliere select{
+  color: #e4c238;
+}
+#editeFiliere span,
+#addFiliere span,
+#addEtudiantToFiliere span{
+  color: #ffffff;
+  font-size: 20px;
+}
+.close{
+  color: #e4c238;
+  background-color: #e5e7eb;
+  border-radius: 100%;
+  padding: 5px 10px;
+  width: max-content;
+}

@@ -1,0 +1,46 @@
+/* Styles for the emploi du temps component */
+
+.container {
+  max-width: 1200px; /* Limit container width */
+  margin: 0 auto; /* Center the container */
+  padding: 20px; /* Add padding around the content */
+}
+
+.table {
+  border-collapse: collapse; /* Remove default table borders */
+  width: 100%; /* Make the table span the full width */
+}
+
+.table th,
+.table td {
+  text-align: left; /* Align text to the left */
+  padding: 12px 8px; /* Add padding to cells */
+  border: 1px solid #ddd; /* Add a thin border to each cell */
+}
+
+.table th {
+  background-color: #f0f0f0; /* Light gray background for headers */
+  font-weight: bold; /* Make header text bold */
+}
+
+.table tr:nth-child(odd) {
+  background-color: #fff; /* Light background for odd rows */
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9; /* Slightly darker background for even rows */
+}
+
+.btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px; /* Add rounded corners */
+  transition: background-color 0.3s ease; /* Add hover effect */
+}
+
+.btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}

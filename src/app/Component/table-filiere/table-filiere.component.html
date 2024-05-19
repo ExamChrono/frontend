@@ -1,0 +1,215 @@
+<div class="flex justify-center" style="max-height: 90vh;">
+  <div class=" container p-6 overflow-scroll px-0">
+    <div class="flex justify-between items-center">
+      <h1 class="text-2xl font-sans font-bold text-blue-gray-900">Filieres</h1>
+      <button (click)="AddFiliere()" class="p-4 bg-color-yellow text-white rounded-md">Add Filiere</button>
+    </div>
+    <table class="mt-4 w-full min-w-max table-auto text-left">
+      <thead>
+      <tr>
+        <th class="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+          <p class="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-normal leading-none opacity-70">Filiere</p>
+        </th>
+        <th class="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+          <p class="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-normal leading-none opacity-70">Niveau</p>
+        </th>
+        <th class="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+          <p class="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-normal leading-none opacity-70">Nombre Etudient</p>
+        </th>
+        <th class="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+          <p class="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-normal leading-none opacity-70">Actions</p>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let filiere of filieres">
+        <td class="p-4 border-b border-blue-gray-50">
+          <div class="flex items-center gap-3">
+            <div class="flex flex-col">
+              <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">{{filiere.nom}}</p>
+              <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal opacity-70">{{filiere.specialite}}</p>
+            </div>
+          </div>
+        </td>
+        <td class="p-4 border-b border-blue-gray-50">
+          <div class="w-max">
+            <div class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal" style="opacity: 1;">
+              <span>{{ filiere.niveau }}</span>
+            </div>
+          </div>
+        </td>
+        <td class="p-4 border-b border-blue-gray-50">
+          <div class="w-max">
+            <div class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal" style="opacity: 1;">
+              <span>{{ filiere.nombreEtudient }}</span>
+            </div>
+          </div>
+        </td>
+        <td class="p-4 border-b border-blue-gray-50">
+          <button (click)="EditFiliere(filiere)" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button">
+              <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2" title="edit">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="h-4 w-4">
+                  <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z"></path>
+                </svg>
+              </span>
+          </button>
+          <button (click)="deleteFiliere(filiere)" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button">
+              <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2" title="delete">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="h-4 w-4">
+                  <path d="M3.5 6.5v13a1 1 0 001 1h14a1 1 0 001-1v-13h-16zm2 1h12v12h-12v-12zm5 3a1 1 0 011 1v6a1 1 0 01-2 0v-6a1 1 0 011-1zm4 0a1 1 0 011 1v6a1 1 0 01-2 0v-6a1 1 0 011-1z"></path>
+                </svg>
+              </span>
+          </button>
+          <button title="See Etudiants In Filiere" (click)="seeEtudiantsInFiliere(filiere)" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button">
+            <i class="fa fa-eye"></i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="addFiliere" style="display: none">
+    <span (click)="hideForm()"><button>X</button></span>
+    <form [formGroup]="formAddFiliere">
+      <div class="flex flex-col gap-4 p-6">
+        <div class="flex flex-col gap-2">
+          <label for="nomAdd" class="text-sm font-sans font-normal text-blue-gray-900">Nom</label>
+          <input type="text"  formControlName="nom" id="nomAdd" name="nom" class="p-4 border border-blue-gray-200 rounded-md">
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="specialiteAdd" class="text-sm font-sans font-normal text-blue-gray-900">Specialite</label>
+          <input type="text"  formControlName="specialite" id="specialiteAdd" name="specialite" class="p-4 border border-blue-gray-200 rounded-md">
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="niveauAdd" class="text-sm font-sans font-normal text-blue-gray-900">Niveau</label>
+          <input type="text" formControlName="niveau" id="niveauAdd" name="niveau" class="p-4 border border-blue-gray-200 rounded-md">
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="delegueIdAdd" class="text-sm font-sans font-normal text-blue-gray-900">Delegue</label>
+          <select formControlName="delegueId" id="delegueIdAdd" name="delegueId" class="p-4 border border-blue-gray-200 rounded-md">
+            <option value="" selected disabled>Select Delegue</option>
+            <option *ngFor="let delegue of delegues" value="{{ delegue.id }}">{{ delegue.etudiant?.nom }}</option>
+          </select>
+        </div>
+        <div class="flex flex-col gap-2">
+          <button (click)="AddSaveFiliere()" type="submit" class="p-4 bg-blue-500 text-white rounded-md">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div id="editeFiliere" style="display: none">
+    <span (click)="hideForm()"><button>X</button></span>
+
+    <form [formGroup]="formEditFiliere">
+      <input type="hidden" formControlName="id" id="idEdit" name="id">
+      <div class="flex flex-col gap-4 p-6">
+        <div class="flex flex-col gap-2">
+          <label for="nomEdit" class="text-sm font-sans font-normal text-blue-gray-900">Nom</label>
+          <input type="text"  formControlName="nom" id="nomEdit" name="nom" class="p-4 border border-blue-gray-200 rounded-md">
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="specialiteEdit" class="text-sm font-sans font-normal text-blue-gray-900">Specialite</label>
+          <input type="text"  formControlName="specialite" id="specialiteEdit" name="specialite" class="p-4 border border-blue-gray-200 rounded-md">
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="niveauEdit" class="text-sm font-sans font-normal text-blue-gray-900">Niveau</label>
+          <input type="text" formControlName="niveau" id="niveauEdit" name="niveau" class="p-4 border border-blue-gray-200 rounded-md">
+        </div>
+        <div class="flex flex-col gap-2">
+          <button (click)="updateFiliere()" type="submit" class="p-4 bg-blue-500 text-white rounded-md">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div id="seeEtudiantsInFiliere" style="display: none">
+    <span class="close" (click)="hideForm()"><button>X</button></span>
+    <div class="flex justify-center" style="max-height: 80vh;width: -webkit-fill-available;">
+      <div class=" container p-6 overflow-scroll px-0">
+        <div class="flex justify-between items-center">
+          <h1 class="text-2xl font-sans font-bold text-blue-gray-900">{{ filiere.nombreEtudient }} Etudiants In Filiere Name: {{ filiere.nom }}</h1>
+          <button (click)="addEtudiantToFiliere(filiere)" class="p-4 bg-color-yellow text-white rounded-md">Add Etudiant</button>
+        </div>
+        <table class="mt-4 w-full min-w-max table-auto text-left">
+          <thead>
+          <tr>
+            <th class="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+              <p class="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-normal leading-none opacity-70">Etudiant</p>
+            </th>
+            <th class="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+              <p class="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-normal leading-none opacity-70">Matricule</p>
+            </th>
+            <th class="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+              <p class="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-normal leading-none opacity-70">RoleUser</p>
+            </th>
+            <th class="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+              <p class="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-normal leading-none opacity-70">Verified</p>
+            </th>
+            <th class="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+              <p class="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-normal leading-none opacity-70">Actions</p>
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let etudiant of etudiants">
+            <td class="p-4 border-b border-blue-gray-50">
+              <div class="flex items-center gap-3">
+                <div class="flex flex-col">
+                  <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">{{etudiant.nom}} {{etudiant.prenom}}</p>
+                  <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal opacity-70">{{etudiant.email}}</p>
+                </div>
+              </div>
+            </td>
+            <td class="p-4 border-b border-blue-gray-50">
+              <div class="w-max">
+                <div class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal" style="opacity: 1;">
+                  <span>{{ etudiant.matricule }}</span>
+                </div>
+              </div>
+            </td>
+            <td class="p-4 border-b border-blue-gray-50">
+              <div class="w-max">
+                <div class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal" style="opacity: 1;">
+                  <span>{{ etudiant.roleUser }}</span>
+                </div>
+              </div>
+            </td>
+            <td class="p-4 border-b border-blue-gray-50">
+              <div class="w-max">
+                <div *ngIf="etudiant.validation" class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-green-500/20 text-green-600 py-1 px-2 text-xs rounded-md" style="opacity: 1;">
+                  <span class="">Validated</span>
+                </div>
+                <div *ngIf="!etudiant.validation" class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-red-500/20 text-red-700 py-1 px-2 text-xs rounded-md" style="opacity: 1;">
+                  <span>Not Validated</span>
+                </div>
+              </div>
+            </td>
+            <td class="p-4 border-b border-blue-gray-50">
+              <button *ngIf="etudiant.roleUser != RoleUser.Delegue" title="Remove Etudiant From Filiere" (click)="removeEtudiantFromFiliere(etudiant.id,filiere)" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button">
+                <i class="fa fa-minus"></i>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div id="addEtudiantToFiliere" style="display: none">
+    <span (click)="hideForm()"><button>X</button></span>
+    <form [formGroup]="formAddEtudiantToFiliere">
+      <div class="flex flex-col gap-4 p-6">
+        <div class="flex flex-col gap-2">
+          <input type="hidden" name="filiereId" formControlName="filiereId" id="filiereIdAdd">
+          <label for="idAdd" class="text-sm font-sans font-normal text-blue-gray-900">Etudiant</label>
+          <select formControlName="etudiantId" id="idAdd" name="etudiantId" class="p-4 border border-blue-gray-200 rounded-md">
+            <option value="" selected disabled>Select Etudiant</option>
+            <option *ngFor="let etudiant of etudiantsNotInFiliere" value="{{ etudiant.id }}">{{ etudiant.nom }} {{ etudiant.prenom }}</option>
+          </select>
+        </div>
+        <div class="flex flex-col gap-2">
+          <button (click)="AddSaveEtudiantToFiliere()" type="submit" class="p-4 bg-blue-500 text-white rounded-md">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

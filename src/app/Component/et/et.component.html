@@ -1,0 +1,35 @@
+<div id="emploiDuTemps">
+  <div class="container mx-auto px-4 py-8">
+      <h2 class="text-2xl font-bold mb-4">Emploi du temps</h2>
+      <table class="table-fixed w-full border border-gray-200 shadow-md">
+        <thead>
+        <tr>
+          <th class="text-left px-4 py-2 bg-gray-100">Numero Du Salle</th>  <th class="text-left px-4 py-2 bg-gray-100">Type Du Salle</th>
+          <th class="text-center px-4 py-2 bg-gray-100">Capacité Du Salle</th>
+          <th class="text-center px-4 py-2 bg-gray-100">Date Du Examen</th>
+          <th class="text-left px-4 py-2 bg-gray-100">Nom Du Surveillant</th>
+          <th class="text-left px-4 py-2 bg-gray-100">Nom Du Module</th>
+          <th class="text-left px-4 py-2 bg-gray-100">Numero Du Groupe</th>
+          <th class="text-left px-4 py-2 bg-gray-100">Nom Du Filière</th>
+          <th class="text-left px-4 py-2 bg-gray-100">Nom Du Enseignant</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let emploiDuTemps of emploisDuTemps">
+          <td class="text-left px-4 py-2">{{ emploiDuTemps.numero_salle }}</td>
+          <td class="text-left px-4 py-2">{{ emploiDuTemps.type_salle }}</td>
+          <td class="text-center px-4 py-2">{{ emploiDuTemps.capacite }}</td>
+          <td class="text-center px-4 py-2">{{ emploiDuTemps.passExamen?.date }}</td>
+          <td class="text-left px-4 py-2">{{ emploiDuTemps.surveille?.nom }}</td>
+          <td class="text-left px-4 py-2">{{ emploiDuTemps.passExamen?.modules?.nom }}</td>
+          <td class="text-left px-4 py-2">{{ emploiDuTemps.surveille?.groupe?.id }}</td>
+          <td class="text-left px-4 py-2">{{ emploiDuTemps.surveille?.groupe?.filiere?.nom }}</td>
+          <td class="text-left px-4 py-2">{{ emploiDuTemps.surveille?.enseignant?.nom }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+<div class="container mx-auto px-4 py-8">
+  <button (click)="g2pdf()" class="btn btn-primary mt-4 px-4 py-2">Générer PDF</button>
+</div>

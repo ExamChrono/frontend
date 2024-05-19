@@ -1,0 +1,79 @@
+<div class="flex justify-center" style="max-height: 90vh;">
+  <div class=" container p-6 overflow-scroll px-0">
+    <table class="mt-4 w-full min-w-max table-auto text-left">
+      <thead>
+      <tr>
+        <th class="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+          <p class="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-normal leading-none opacity-70">Filiere</p>
+        </th>
+        <th class="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+          <p class="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-normal leading-none opacity-70">niveau</p>
+        </th>
+        <th class="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+          <p class="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-normal leading-none opacity-70">Nombre Etudiant</p>
+        </th>
+        <th class="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+          <p class="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-normal leading-none opacity-70">Nombre Groupe</p>
+        </th>
+        <th class="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+          <p class="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-normal leading-none opacity-70">Actions</p>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let groupe of groupes">
+        <td class="p-4 border-b border-blue-gray-50">
+          <div class="flex items-center gap-3">
+            <div class="flex flex-col">
+              <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">{{groupe.nom}}</p>
+              <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal opacity-70">{{groupe.specialite}}</p>
+            </div>
+          </div>
+        </td>
+        <td class="p-4 border-b border-blue-gray-50">
+          <div class="w-max">
+            <div class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal" style="opacity: 1;">
+              <span>{{groupe.niveau}}</span>
+            </div>
+          </div>
+        </td>
+        <td class="p-4 border-b border-blue-gray-50">
+          <div class="w-max">
+            <div class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal" style="opacity: 1;">
+              <span>{{ groupe.nombreEtudient }}</span>
+            </div>
+          </div>
+        </td>
+        <td class="p-4 border-b border-blue-gray-50">
+          <div class="w-max">
+            <div class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal" style="opacity: 1;">
+              <span>{{ groupe.groupes?.length }} groupes: </span>
+              <span *ngFor="let g of groupe.groupes">{{g.nbrEtudiant}}. </span>
+            </div>
+          </div>
+        </td>
+        <td class="p-4 border-b border-blue-gray-50">
+          <button  (click)="addGroupe(groupe)" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button">
+              <span class="fa fa-plus" title="Add Groupe To this Filiere: {{ groupe.nom }}"></span>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="addGroupe" style="display: none">
+    <span (click)="hideForm()"><button>X</button></span>
+    <form [formGroup]="formAddGroupe">
+      <input type="hidden" name="filiereId" formControlName="filiereId" id="filiereIdAdd">
+      <div class="flex flex-col gap-4 p-6">
+        <div class="flex flex-col gap-2">
+          <label for="nbrEtudiantAdd" class="text-sm font-sans font-normal text-blue-gray-900">Nombre Etudiant</label>
+          <input type="text"  formControlName="nbrEtudiant" id="nbrEtudiantAdd" name="nbrEtudiant" class="p-4 border border-blue-gray-200 rounded-md">
+        </div>
+        <div class="flex flex-col gap-2">
+          <button (click)="AddSaveGroupe()" type="submit" class="p-4 bg-blue-500 text-white rounded-md">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

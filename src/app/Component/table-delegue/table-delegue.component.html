@@ -1,0 +1,91 @@
+<div class="flex justify-center" style="max-height: 90vh;">
+  <div class=" container p-6 overflow-scroll px-0">
+    <div class="flex justify-between items-center">
+      <h1 class="text-2xl font-sans font-bold text-blue-gray-900">Delegues</h1>
+      <button (click)="addDelegue()" class="p-4 bg-color-yellow text-white rounded-md">Add Delegue</button>
+    </div>
+    <table class="mt-4 w-full min-w-max table-auto text-left">
+      <thead>
+      <tr>
+        <th class="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+          <p class="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-normal leading-none opacity-70">Delegue</p>
+        </th>
+        <th class="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+          <p class="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-normal leading-none opacity-70">Matricule</p>
+        </th>
+        <th class="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+          <p class="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-normal leading-none opacity-70">RoleUser</p>
+        </th>
+        <th class="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+          <p class="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-normal leading-none opacity-70">Verified</p>
+        </th>
+        <th class="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+          <p class="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-normal leading-none opacity-70">Actions</p>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let delegue of delegues">
+        <td class="p-4 border-b border-blue-gray-50">
+          <div class="flex items-center gap-3">
+            <div class="flex flex-col">
+              <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">{{delegue.etudiant?.nom}} {{delegue.etudiant?.prenom}}</p>
+              <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal opacity-70">{{delegue.etudiant?.email}}</p>
+            </div>
+          </div>
+        </td>
+        <td class="p-4 border-b border-blue-gray-50">
+          <div class="w-max">
+            <div class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal" style="opacity: 1;">
+              <span>{{ delegue.etudiant?.matricule }}</span>
+            </div>
+          </div>
+        </td>
+        <td class="p-4 border-b border-blue-gray-50">
+          <div class="w-max">
+            <div class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal" style="opacity: 1;">
+              <span>{{ delegue.roleUser }}</span>
+            </div>
+          </div>
+        </td>
+        <td class="p-4 border-b border-blue-gray-50">
+          <div class="w-max">
+            <div *ngIf="delegue.etudiant?.validation" class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-green-500/20 text-green-600 py-1 px-2 text-xs rounded-md" style="opacity: 1;">
+              <span class="">Added To Filiere: {{ delegue.filiere }}</span>
+            </div>
+            <div *ngIf="!delegue.etudiant?.validation" class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-red-500/20 text-red-700 py-1 px-2 text-xs rounded-md" style="opacity: 1;">
+              <span>Not Added To Filiere</span>
+            </div>
+          </div>
+        </td>
+        <td class="p-4 border-b border-blue-gray-50">
+          <button *ngIf="!delegue.etudiant?.validation" (click)="deleteDelegue(delegue)" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button">
+              <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2" title="delete">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="h-4 w-4">
+                  <path d="M3.5 6.5v13a1 1 0 001 1h14a1 1 0 001-1v-13h-16zm2 1h12v12h-12v-12zm5 3a1 1 0 011 1v6a1 1 0 01-2 0v-6a1 1 0 011-1zm4 0a1 1 0 011 1v6a1 1 0 01-2 0v-6a1 1 0 011-1z"></path>
+                </svg>
+              </span>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="addDelegue" style="display: none">
+    <span (click)="hideForm()"><button>X</button></span>
+    <form [formGroup]="formAddDelegue">
+      <div class="flex flex-col gap-4 p-6">
+        <div class="flex flex-col gap-2">
+          <label for="idAdd" class="text-sm font-sans font-normal text-blue-gray-900">Etudiant</label>
+          <select formControlName="idEtudiant" id="idAdd" name="idEtudiant" class="p-4 border border-blue-gray-200 rounded-md">
+            <option value="" selected disabled>Select Etudiant</option>
+            <option *ngFor="let etudiant of etudiants" value="{{ etudiant.id }}">{{ etudiant.nom }} {{ etudiant.prenom }}</option>
+          </select>
+        </div>
+        <div class="flex flex-col gap-2">
+          <button (click)="AddSaveDelegue()" type="submit" class="p-4 bg-blue-500 text-white rounded-md">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
